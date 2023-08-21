@@ -16,12 +16,12 @@ app.use(cors({
 }))
 
 
-app.get("/", async (req: Request, res: Response): Promise<any> => {
+app.get("/api", async (req: Request, res: Response): Promise<any> => {
     const results = await prisma.test.findMany()
     res.send(`Test data: ${results.map(result => result.testData).join(' ')}`)
 });
 
-app.post('/create', async (req: Request, res: Response): Promise<any> => {
+app.post('/api/create', async (req: Request, res: Response): Promise<any> => {
     const { testData } = req.body
 
     if (!testData) res.json({
