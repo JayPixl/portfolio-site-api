@@ -1,6 +1,8 @@
 import express from 'express'
 import { Application, Request, Response } from 'express'
 
+import cors from 'cors'
+
 import dotenv from 'dotenv'
 import { prisma } from './prisma'
 dotenv.config()
@@ -9,6 +11,9 @@ const PORT: number = Number(process.env.PORT) || 8000
 const app: Application = express()
 
 app.use(express.json())
+app.use(cors({
+    origin: '*'
+}))
 
 
 app.get("/", async (req: Request, res: Response): Promise<any> => {
